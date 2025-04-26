@@ -24,8 +24,7 @@
 
 # 1.  Zakres i krótki opis systemu
 
-(np. Cel projektu, słowny opis realizowanego systemu systemu)
-
+Projekt bazy danych dla instytucji farmaceutycznej zwanej apteką
 
 # 2.	Wymagania i funkcje systemu
 
