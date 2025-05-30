@@ -2,11 +2,11 @@
 <b>Temat</b>: ApteViTa
 <br></br>
 <b>Autorzy</b>:
-Aleksandra Steczko
-Konrad Wędzicha
-Agnieszka Leżoń
-Dominik Stachura 
-Kamil Rucki
+- Aleksandra Steczko - 22%
+- Konrad Wędzicha - 22%
+- Agnieszka Leżoń - 19%
+- Dominik Stachura  - 19%
+- Kamil Rucki - 18%
 #
 
 <br></br>
@@ -37,7 +37,11 @@ Celem projektu ApteViTa jest stworzenie kompleksowego systemu informatycznego ws
 ### Schemat bazy danych
 System bazuje na relacyjnym modelu danych, obejmującym kluczowe obszary działalności apteki: sprzedaż, magazyn, dostawy, klientów, lekarzy oraz reklamacje. Schemat przedstawia powiązania pomiędzy tabelami, zapewniając integralność danych i możliwość kompleksowej obsługi procesów aptecznych.
 
+<br></br>
 
+![Alt text](schemat.png "a title")
+
+<br></br>
 
 ### Opis poszczególnych tabel
 
@@ -76,8 +80,8 @@ Zawiera szczegóły dotyczące sprzedanych produktów w ramach danej transakcji 
 
 | Nazwa        | Typ          | Opis                      |
 |-------------|---------------|-------------------------------|
-| **id_transakcji** | INTEGER | 🔑 PK, not null, unique, autoincrement |
-| **id_produktu** | INTEGER | 🔑 PK, not null |
+| **id_transakcji** | INTEGER | 🔑 PK,FK1, not null |
+| **id_produktu** | INTEGER | 🔑 PK,FK2, not null |
 | **ilość** | INTEGER | not null |
 
 <br/><br/>
@@ -99,8 +103,8 @@ Określa, jakie produkty i w jakiej ilości znajdują się na danej recepcie.
 
 | Nazwa        | Typ          | Opis                      |
 |-------------|---------------|-------------------------------|
-| **id_recepty** | INTEGER | 🔑 PK, not null, unique, autoincrement |
-| **id_produktu** | INTEGER | 🔑 PK, not null |
+| **id_recepty** | INTEGER | 🔑 PK,FK1, not null |
+| **id_produktu** | INTEGER | 🔑 PK,FK2, not null |
 | **ilość** | INTEGER | not null |
 
 <br/><br/>
@@ -122,7 +126,7 @@ Przechowuje dane dostawców leków (nazwa, adres, kraj, kontakt).
 
 | Nazwa        | Typ          | Opis                      |
 |-------------|---------------|-------------------------------|
-| **id_dostawcy** | INTEGER | 🔑 PK, not null, unique, autoincrement |
+| **id_dostawcy** | INTEGER | 🔑 PK, not null |
 | **nazwa** | VARCHAR(40) | not null |
 | **kraj** | VARCHAR(40) | not null |
 | **miasto** | VARCHAR(40) | not null |
@@ -137,8 +141,8 @@ Rejestruje informacje o dostawach do apteki (dostawca, data dostawy).
 
 | Nazwa        | Typ          | Opis                      |
 |-------------|---------------|-------------------------------|
-| **id_dostawy** | INTEGER | 🔑 PK, not null, unique, autoincrement |
-| **id_dostawcy** | INTEGER | 🔑 PK, not null |
+| **id_dostawy** | INTEGER | 🔑 PK,FK1, not null |
+| **id_dostawcy** | INTEGER | 🔑 PK,FK2, not null |
 | **data_dostawy** | DATE | not null |
 
 <br/><br/>
@@ -148,8 +152,8 @@ Określa, które partie produktów zostały dostarczone w ramach danej dostawy o
 
 | Nazwa        | Typ          | Opis                      |
 |-------------|---------------|-------------------------------|
-| **id_dostawy** | INTEGER | 🔑 PK, not null, unique, autoincrement |
-| **id_partii** | INTEGER | 🔑 PK, not null |
+| **id_dostawy** | INTEGER | 🔑 PK,FK1, not null |
+| **id_partii** | INTEGER | 🔑 PK,FK2, not null |
 | **cena_dostawy** | FLOAT | not null |
 
 <br/><br/>
@@ -218,6 +222,6 @@ Określa wielkości zniżki i produkt na który ta zniżka jest nałożona.
 
 | Nazwa        | Typ          | Opis                      |
 |-------------|---------------|-------------------------------|
-| **id_promocji** | INTEGER | 🔑 PK, not null, unique, autoincrement |
-| **id_produktu** | INTEGER | 🔑 PK, not null |
+| **id_promocji** | INTEGER | 🔑 PK,FK1, not null |
+| **id_produktu** | INTEGER | 🔑 PK,FK2, not null |
 | **wysokość_promocji** | FLOAT | not null |
